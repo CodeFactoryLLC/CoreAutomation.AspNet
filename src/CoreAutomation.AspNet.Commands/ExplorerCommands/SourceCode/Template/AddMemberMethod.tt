@@ -1,0 +1,97 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="CodeFactory" #>
+<#@ assembly name="CodeFactory.DotNet" #>
+<#@ assembly name="CodeFactory.VisualStudio" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="CodeFactory" #>
+<#@ import namespace="CodeFactory.DotNet" #>
+<#@ import namespace="CodeFactory.DotNet.CSharp" #>
+<#@ import namespace="CodeFactory.VisualStudio" #>
+<#@ import namespace="CoreAutomation.AspNet.Commands.ExplorerCommands.SourceCode.Template" #>
+<#@ import namespace="CoreAutomation.AspNet.Automation.Logic" #>
+<#@ import namespace="CodeFactory.Formatting.CSharp" #>
+<#    //Loading the method data from the supplied model data object. #>    
+<#    AddMemberData templateData = ModelData as AddMemberData;#>
+<#    if (templateData == null) return null; #>
+<#    CsMethod methodData = templateData.MethodModel;#>
+<#    if(methodData == null) return null; #>
+<#    if(!methodData.IsLoaded) return null; #>
+<#    NamespaceManager manager = templateData.Manager; #>
+<#    if (manager == null) return null;#>
+<#=Environment.NewLine#>
+<#    if(methodData.HasDocumentation)#>
+<#    {#>
+<#      foreach(var formattedDocLine in methodData.CSharpFormatXmlDocumentationEnumerator())#>
+<#      {#>
+        <#=formattedDocLine#>
+<#      }#>
+<#    }#>
+<#  if(methodData.HasAttributes)#>
+<#  {#>
+<#      var attributes = methodData.Attributes.CSharpFormatAttributeDeclarationEnumerator(manager);
+        foreach(var attributeData in attributes)#>
+<#      {#>
+        <#=attributeData#>
+<#      }#>
+<#    }#>
+<#  var formattedMethod = methodData.CSharpFormatStandardMethodSignature(manager);#>
+<#  if(string.IsNullOrEmpty(formattedMethod)) return null;#>
+        <#=formattedMethod#>
+        {
+            _logger.LogInformation("Entering");
+
+<#  if(methodData.HasParameters)#>
+<#  {#>
+<#      foreach( ICsParameter paramData in methodData.Parameters)#>
+<#      {#>
+<#          if(paramData.HasDefaultValue) continue;#>
+<#          if(paramData.ParameterType.WellKnownType == CsKnownLanguageType.String)#>
+<#          {#>
+            if (string.IsNullOrEmpty(<#=paramData.Name#>))
+            {
+                _logger.LogError($"The parameter {nameof(<#=paramData.Name#>)} was not provided. Will raise an argument exception");
+                _logger.LogInformation("Exiting");
+                throw new ArgumentNullException($"Parameter data was missing from the application logic.");
+            }
+
+<#          }#>
+<#          if(!paramData.ParameterType.IsValueType & !paramData.ParameterType.IsWellKnownType)#>
+<#          {#>
+            if (<#=paramData.Name#> == null)
+            {
+                _logger.LogError($"The parameter {nameof(<#=paramData.Name#>)} was not provided. Will raise an argument exception");
+                _logger.LogInformation("Exiting");
+                throw new ArgumentNullException($"Parameter data was missing from the application logic.");
+            }
+
+<#          }#>
+<#       }#>
+<#   }#>
+            try
+            {
+                //TODO: add execution logic here
+            }
+            catch (ArgumentNullException)
+            {
+                //Throwing the managed exception. Override this logic if you have logic in this method to handle managed errors.
+                _logger.LogInformation("Exiting");
+                throw;
+            }
+            catch (Exception unhandledException)
+            {
+                _logger.LogError(unhandledException, "An unhandled exception occured, see the exception for details. Will throw a UnhandledLogicException");
+                _logger.LogInformation("Exiting");
+                throw new Exception("An unhandled error occured, check the logs for details.");
+            }
+
+            _logger.LogInformation("Exiting");
+            throw new NotImplementedException();
+
+<# if(!methodData.IsVoid)#>
+<# {#> 
+            //TODO: add return logic here
+<# }#>
+        }
