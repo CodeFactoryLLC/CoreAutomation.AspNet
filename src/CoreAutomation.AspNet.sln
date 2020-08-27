@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreAutomation.AspNet.Commands", "CoreAutomation.AspNet.Commands\CoreAutomation.AspNet.Commands.csproj", "{6259374A-44BD-42ED-A302-B7C5A969A286}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreAutomation.AspNet.Automation", "CoreAutomation.AspNet.Automation\CoreAutomation.AspNet.Automation.csproj", "{DCA619A6-132D-4111-A11F-500090E1A381}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6259374A-44BD-42ED-A302-B7C5A969A286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6259374A-44BD-42ED-A302-B7C5A969A286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6259374A-44BD-42ED-A302-B7C5A969A286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6259374A-44BD-42ED-A302-B7C5A969A286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCA619A6-132D-4111-A11F-500090E1A381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA619A6-132D-4111-A11F-500090E1A381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA619A6-132D-4111-A11F-500090E1A381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA619A6-132D-4111-A11F-500090E1A381}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9AA0E2B-3065-4252-BC9D-303EA0E34DF3}
+	EndGlobalSection
+EndGlobal
