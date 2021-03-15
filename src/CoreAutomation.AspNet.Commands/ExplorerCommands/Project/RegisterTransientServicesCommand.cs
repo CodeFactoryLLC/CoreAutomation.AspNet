@@ -99,7 +99,7 @@ namespace CoreAutomation.AspNet.Commands.ExplorerCommands.Project
             }
             catch (Exception unhandledError)
             {
-                _logger.Error($"The following unhandled error occured while executing the solution explorer project command {commandTitle}. ",
+                _logger.Error($"The following unhandled error occurred while executing the solution explorer project command {commandTitle}. ",
                     unhandledError);
 
             }
