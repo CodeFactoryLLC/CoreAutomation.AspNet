@@ -42,7 +42,7 @@
       <Version>1.21068.1</Version>
     </PackageReference>
     <PackageReference Include="CodeFactorySDK">
-      <Version>1.21068.1</Version>
+      <Version>1.21085.1</Version>
     </PackageReference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

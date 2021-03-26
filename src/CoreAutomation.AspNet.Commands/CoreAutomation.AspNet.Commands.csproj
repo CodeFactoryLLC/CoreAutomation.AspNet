@@ -44,7 +44,7 @@
       <Version>1.21068.1</Version>
     </PackageReference>
     <PackageReference Include="CodeFactorySDK">
-      <Version>1.21068.1</Version>
+      <Version>1.21085.1</Version>
     </PackageReference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -100,8 +100,10 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target> -->
-  <Target Name="AfterBuild">
+  <!--<Target Name="AfterBuild">
     <Exec Command="&quot;$(DevEnvDir)PublicAssemblies\CodeFactory\Packager\cfxpackager.exe&quot; &quot;$(TargetPath)&quot;" />
-    <!-- <PackageCfx Assembly="$(TargetPath)"/>-->
-  </Target>
+    -->
+  <!-- <PackageCfx Assembly="$(TargetPath)"/>-->
+  <!--
+  </Target>-->
 </Project>
